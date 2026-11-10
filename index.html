@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Deutsch-Stern</title>
+  <meta name="description" content="Deutsch üben für die 5. Klasse – fröhlich, kostenlos und offline.">
+  <meta name="theme-color" content="#FFF4E6">
+  <meta name="color-scheme" content="light">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Deutsch-Stern">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- Startbildschirm -->
+    <section id="screen-home" class="screen aktiv" aria-labelledby="titel">
+      <header class="home-kopf">
+        <button class="figur-knopf" id="home-figur" aria-label="Mein Zimmer öffnen">🦊</button>
+        <div>
+          <h1 id="titel">Deutsch-Stern</h1>
+          <p class="gruss" id="gruss">Schön, dass du da bist!</p>
+        </div>
+      </header>
+
+      <div class="chips">
+        <div class="chip chip-gelb">⭐ <b id="home-sterne">0</b>&nbsp;Sterne</div>
+        <div class="chip chip-orange">🔥 <b id="home-tage">0</b>&nbsp;<span id="home-tage-wort">Tage</span></div>
+      </div>
+
+      <div class="karte mission-karte" id="mission-karte">
+        <div class="mission-kopf">
+          <span class="mission-emoji" aria-hidden="true">🎯</span>
+          <div>
+            <h2>Tägliche Mission</h2>
+            <p class="leise" id="mission-text">5 Aufgaben · etwa 5–10 Minuten</p>
+          </div>
+        </div>
+        <div class="punkte-reihe" id="mission-punkte" aria-hidden="true"></div>
+        <button class="knopf knopf-gross knopf-lila" id="knopf-mission">Mission starten</button>
+      </div>
+
+      <div class="menue">
+        <button class="menue-knopf" id="knopf-welten"><span>🗺️</span>Welten</button>
+        <button class="menue-knopf" id="knopf-zimmer"><span>🏠</span>Mein Zimmer</button>
+        <button class="menue-knopf" id="knopf-fortschritt"><span>📈</span>Fortschritt</button>
+        <button class="menue-knopf" id="knopf-buch"><span>📖</span>Geschichten</button>
+      </div>
+
+      <div class="fuss">
+        <button class="text-knopf" id="knopf-ton">🔊 Ton an</button>
+      </div>
+    </section>
+
+    <!-- Welten -->
+    <section id="screen-welten" class="screen" aria-labelledby="welten-titel">
+      <div class="leiste">
+        <button class="zurueck" data-zurueck aria-label="Zurück">‹</button>
+        <h2 id="welten-titel">Welten</h2>
+      </div>
+      <p class="leise mitte">Wähle eine Welt. Eine Runde dauert nur ein paar Minuten.</p>
+      <div class="welten-liste" id="welten-liste"></div>
+    </section>
+
+    <!-- Aufgabe -->
+    <section id="screen-aufgabe" class="screen" aria-label="Aufgabe">
+      <div class="leiste">
+        <button class="zurueck" id="aufgabe-abbruch" aria-label="Runde beenden">✕</button>
+        <div class="fortschritt-balken" aria-hidden="true"><div id="runde-balken"></div></div>
+        <div class="chip chip-gelb chip-klein" id="sterne-chip">⭐ <b id="aufgabe-sterne">0</b></div>
+      </div>
+      <div class="welt-schild" id="welt-schild"></div>
+
+      <div id="lesetext" class="karte lesetext" hidden>
+        <div class="lesetext-kopf">
+          <h3 id="lesetext-titel"></h3>
+          <button class="rund-knopf" id="lesetext-vorlesen" aria-label="Text vorlesen">🔊</button>
+        </div>
+        <div id="lesetext-inhalt"></div>
+      </div>
+
+      <div class="karte frage-karte" id="frage-karte">
+        <div class="frage-zeile">
+          <p class="frage" id="frage"></p>
+          <button class="rund-knopf" id="frage-vorlesen" aria-label="Frage vorlesen">🔊</button>
+        </div>
+        <div id="aufgabe-inhalt"></div>
+      </div>
+
+      <div class="rueckmeldung" id="rueckmeldung" hidden>
+        <div class="rm-kopf" id="rm-kopf"></div>
+        <p id="rm-text"></p>
+        <button class="knopf knopf-gross" id="knopf-weiter">Weiter</button>
+      </div>
+    </section>
+
+    <!-- Ergebnis -->
+    <section id="screen-ergebnis" class="screen" aria-labelledby="erg-titel">
+      <div class="ergebnis">
+        <div class="erg-emoji" id="erg-emoji">🎉</div>
+        <h2 id="erg-titel">Geschafft!</h2>
+        <p id="erg-text" class="gross-text"></p>
+        <div class="chip chip-gelb chip-gross">⭐ +<b id="erg-sterne">0</b></div>
+        <p id="erg-bonus" class="leise"></p>
+        <div class="erg-liste" id="erg-liste"></div>
+        <button class="knopf knopf-gross knopf-lila" id="erg-nochmal">Noch eine Runde</button>
+        <button class="knopf knopf-gross knopf-hell" id="erg-start">Zur Startseite</button>
+      </div>
+    </section>
+
+    <!-- Mein Zimmer -->
+    <section id="screen-zimmer" class="screen" aria-labelledby="zimmer-titel">
+      <div class="leiste">
+        <button class="zurueck" data-zurueck aria-label="Zurück">‹</button>
+        <h2 id="zimmer-titel">Mein Zimmer</h2>
+        <div class="chip chip-gelb chip-klein">⭐ <b id="zimmer-sterne">0</b></div>
+      </div>
+      <div class="zimmer" id="zimmer" aria-label="Dein Zimmer"></div>
+      <h3>Deine Figur</h3>
+      <div class="figuren" id="figuren"></div>
+      <h3>Laden <span class="leise klein">– bezahle mit deinen Sternen</span></h3>
+      <div class="laden" id="laden"></div>
+    </section>
+
+    <!-- Fortschritt -->
+    <section id="screen-fortschritt" class="screen" aria-labelledby="fs-titel">
+      <div class="leiste">
+        <button class="zurueck" data-zurueck aria-label="Zurück">‹</button>
+        <h2 id="fs-titel">Fortschritt</h2>
+      </div>
+      <div class="chips" id="fs-zahlen"></div>
+      <div id="fs-liste"></div>
+      <h3>Abzeichen</h3>
+      <div class="abzeichen-gitter" id="abzeichen"></div>
+      <div class="fuss">
+        <a class="text-knopf" href="datenschutz.html">Datenschutz</a>
+        <button class="text-knopf" id="knopf-reset">Fortschritt zurücksetzen</button>
+      </div>
+    </section>
+
+    <!-- Geschichtenbuch -->
+    <section id="screen-buch" class="screen" aria-labelledby="buch-titel">
+      <div class="leiste">
+        <button class="zurueck" data-zurueck aria-label="Zurück">‹</button>
+        <h2 id="buch-titel">Meine Geschichten</h2>
+      </div>
+      <div id="buch-liste"></div>
+    </section>
+
+  </div>
+
+  <!-- Popup -->
+  <div class="popup-hintergrund" id="popup" hidden>
+    <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-titel">
+      <div class="popup-emoji" id="popup-emoji"></div>
+      <h3 id="popup-titel"></h3>
+      <p id="popup-text"></p>
+      <div class="popup-knoepfe" id="popup-knoepfe"></div>
+    </div>
+  </div>
+
+  <canvas id="konfetti" aria-hidden="true"></canvas>
+
+  <script src="aufgaben.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
